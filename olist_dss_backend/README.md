@@ -265,7 +265,7 @@ trễ và cùng cách loại trừ đơn chưa xác định được kết quả
 #### Quy tắc R003 --- Kịch bản làm tăng phí vận chuyển ghi nhận
 
 -   Được đánh giá khi request có tham số kịch bản What-if.
--   Ngưỡng hiện tại: tổng `freight_value` trong kịch bản tăng ít nhất
+-   Ngưỡng hiện tại: tổng `freight_value` trong kịch bản tăng hơn nhất
     `10%` so với đường cơ sở.
 -   Hành động gợi ý: xem xét chính sách phí, năng lực xử lý đơn và
     phương án làm việc với đối tác vận chuyển.
