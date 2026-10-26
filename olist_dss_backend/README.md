@@ -101,32 +101,7 @@ Swagger UI cho phép xem schema request/response và gửi request thử
 nghiệm mà không cần xây dựng frontend.
 
 ## 4. Phân khúc khách hàng bằng RFM + K-Means
-
-### 4.1. Chỉ số RFM
-
-Phân khúc sử dụng dữ liệu mua hàng đã giao thành công, tổng hợp theo
-`customer_unique_id`.
-
-  -----------------------------------------------------------------------
-  Chỉ số                  Ý nghĩa                 Cách tính
-  ----------------------- ----------------------- -----------------------
-  **Recency (R)**         Khoảng thời gian từ lần Số ngày từ ngày giao
-                          mua gần nhất            hàng thành công gần
-                                                  nhất của khách đến ngày
-                                                  phân tích
-
-  **Frequency (F)**       Tần suất mua hàng       Số đơn hàng đã giao
-                                                  thành công
-
-  **Monetary (M)**        Giá trị mua hàng        Tổng giá trị `price`
-                                                  của các đơn hàng đã
-                                                  giao thành công
-  -----------------------------------------------------------------------
-
-Ngày phân tích được xác định từ ngày giao hàng thành công mới nhất trong
-dữ liệu, không phải ngày hiện tại của máy.
-
-### 4.2. Quy trình huấn luyện
+### 4.1. Quy trình huấn luyện
 
 API retrain thực hiện quy trình tổng quát sau:
 
@@ -150,7 +125,7 @@ số đánh giá, không tự động thay đổi số cụm. ID cụm K-Means c
 giữa các lần train; vì vậy cần đọc `segment_name` và chỉ số RFM thay vì
 giả định `cluster_id = 0` luôn có cùng ý nghĩa.
 
-### 4.3. Bắt đầu huấn luyện
+### 4.2. Bắt đầu huấn luyện
 
 1.  Khởi chạy backend và mở Swagger UI.
 2.  Tìm `POST /api/v1/segments/retrain`.
@@ -168,7 +143,7 @@ dụ minh họa:
 
 Giá trị `job_id` trên chỉ là ví dụ, không phải mã công việc thực tế.
 
-### 4.4. Theo dõi trạng thái
+### 4.3. Theo dõi trạng thái
 
 Gọi:
 
@@ -210,6 +185,7 @@ phiên bản đang chạy.
 
   `POST`                  `/api/v1/what-if`                       Phân tích độ nhạy theo
                                                                   các tham số kịch bản
+                                                                  
   ---------------------------------------------------------------------------------------
 
 ### 5.2. Customer Segmentation
@@ -229,6 +205,7 @@ phiên bản đang chạy.
 
   `GET`                   `/api/v1/segments/{cluster_id}/customers`   Truy vấn khách hàng
                                                                       theo cụm, có phân trang
+                                                                      
   -------------------------------------------------------------------------------------------
 
 Ví dụ:
@@ -254,6 +231,7 @@ GET /api/v1/segments/0/customers?limit=100&offset=0
   `GET`                   `/api/v1/recommendations?order_growth_pct=10`   Đánh giá khuyến nghị
                                                                           khi áp dụng kịch bản
                                                                           What-if tăng số đơn 10%
+                                                                          
   -----------------------------------------------------------------------------------------------
 
 Module khuyến nghị dùng quy tắc nghiệp vụ, không huấn luyện thêm mô hình
