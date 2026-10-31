@@ -195,3 +195,12 @@ JOIN gold.dim_product p ON p.product_key = f.product_key
 GROUP BY p.category_name_en
 ORDER BY doanh_thu DESC;
 ```
+
+
+**OLAP TOOL: HOW TO USE**
+1: make sure you have installed the requirements by running ```pip install -r requirements.txt```
+2: after setting up the database, go into the dashboard directory: ```cd dashboards```
+3: run the streamlit app: ```streamlit run app.py```. this will start a locally hosted Uvicorn server on 8501 by default. go there (streamlit terminal should have automatically opened the webpage for you)
+4: if you can see the webpage in your browser, it is working. the first page has static dashboards which have information that is sensible to know immediately. the second page has an interactive olap tool
+the tool allows you to do complex olap operations: slice, dice, pivot, drilldown and rollup, onto the data warehouse.
+5: to stop the Uvicorn server, just end the process in the terminal.
