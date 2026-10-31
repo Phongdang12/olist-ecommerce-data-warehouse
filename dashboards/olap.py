@@ -40,6 +40,33 @@ DIMENSIONS = {
     "late_status": "f.is_late",
 }
 
+def get_dimension_values(
+    conn,
+    dimension
+):
+
+    _validate_dimension(dimension)
+
+    column = DIMENSIONS[dimension]
+
+    sql = f"""
+        SELECT DISTINCT
+            {column} AS value
+
+        {BASE_FROM}
+
+        WHERE {column} IS NOT NULL
+
+        ORDER BY value
+    """
+
+    df = pd.read_sql(
+        sql,
+        conn
+    )
+
+    return df["value"].tolist()
+
 
 # ============================================================
 # Measures
@@ -393,7 +420,7 @@ def roll_up(
 # Pivot
 # ============================================================
 
-def pivot_data(
+def pivot_data( #it is slightly misleading to call this a pivot, since it actually just constructs a 2d table, however the intent is to use it to pivot
     conn,
     row_dimension,
     column_dimension,
@@ -413,6 +440,8 @@ def pivot_data(
     row_dimension = customer_state
     column_dimension = year
     """
+    #to pivot: first have a 2d table with row_dimension and column_dimension, then construct a new table to replace it which has new row_dimension and column_dimension
+    #usually, exactly one axis is changed from the oriignal table. transposing is also part of a pivot
 
     df = query(
         conn,
