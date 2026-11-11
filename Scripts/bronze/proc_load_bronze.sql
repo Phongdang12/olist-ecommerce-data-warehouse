@@ -27,13 +27,13 @@ BEGIN
         
         PRINT '>> Loading data to: bronze.orders';
         BULK INSERT bronze.orders
-        FROM 'C:\Users\Admin\Data_Warehouse_Project\Data\olist_orders_dataset.csv'
+        FROM 'E:\debugger-workflow-backend\olist-ecommerce-data-warehouse\Data\olist_orders_dataset.csv'
         WITH (
             FORMAT = 'CSV',
             FIELDQUOTE = '"',
             FIRSTROW = 2,
             FIELDTERMINATOR = ',',
-            ROWTERMINATOR = '0x0a',
+            ROWTERMINATOR = '0x0d0a',
             CODEPAGE = '65001',
             TABLOCK
         );
@@ -48,13 +48,13 @@ BEGIN
         
         PRINT '>> Loading data to: bronze.order_items';
         BULK INSERT bronze.order_items
-        FROM 'C:\Users\Admin\Data_Warehouse_Project\Data\olist_order_items_dataset.csv'
+        FROM 'E:\debugger-workflow-backend\olist-ecommerce-data-warehouse\Data\olist_order_items_dataset.csv'
         WITH (
             FORMAT = 'CSV',
             FIELDQUOTE = '"',
             FIRSTROW = 2,
             FIELDTERMINATOR = ',',
-            ROWTERMINATOR = '0x0a',
+            ROWTERMINATOR = '0x0d0a',
             CODEPAGE = '65001',
             TABLOCK
         );
@@ -69,13 +69,13 @@ BEGIN
         
         PRINT '>> Loading data to: bronze.customers';
         BULK INSERT bronze.customers
-        FROM 'C:\Users\Admin\Data_Warehouse_Project\Data\olist_customers_dataset.csv'
+        FROM 'E:\debugger-workflow-backend\olist-ecommerce-data-warehouse\Data\olist_customers_dataset.csv'
         WITH (
             FORMAT = 'CSV',
             FIELDQUOTE = '"',
             FIRSTROW = 2,
             FIELDTERMINATOR = ',',
-            ROWTERMINATOR = '0x0a',
+            ROWTERMINATOR = '0x0d0a',
             CODEPAGE = '65001',
             TABLOCK
         );
@@ -92,13 +92,13 @@ BEGIN
         
         PRINT '>> Loading data to: bronze.sellers';
         BULK INSERT bronze.sellers
-        FROM 'C:\Users\Admin\Data_Warehouse_Project\Data\olist_sellers_dataset.csv'
+        FROM 'E:\debugger-workflow-backend\olist-ecommerce-data-warehouse\Data\olist_sellers_dataset.csv'
         WITH (
             FORMAT = 'CSV',
             FIELDQUOTE = '"',
             FIRSTROW = 2,
             FIELDTERMINATOR = ',',
-            ROWTERMINATOR = '0x0a',
+            ROWTERMINATOR = '0x0d0a',
             CODEPAGE = '65001',
             TABLOCK
         );
@@ -113,13 +113,13 @@ BEGIN
         
         PRINT '>> Loading data to: bronze.products';
         BULK INSERT bronze.products
-        FROM 'C:\Users\Admin\Data_Warehouse_Project\Data\olist_products_dataset.csv'
+        FROM 'E:\debugger-workflow-backend\olist-ecommerce-data-warehouse\Data\olist_products_dataset.csv'
         WITH (
             FORMAT = 'CSV',
             FIELDQUOTE = '"',
             FIRSTROW = 2,
             FIELDTERMINATOR = ',',
-            ROWTERMINATOR = '0x0a',
+            ROWTERMINATOR = '0x0d0a',
             CODEPAGE = '65001',
             TABLOCK
         );
@@ -134,7 +134,7 @@ BEGIN
         
         PRINT '>> Loading data to: bronze.category_translation';
         BULK INSERT bronze.category_translation
-        FROM 'C:\Users\Admin\Data_Warehouse_Project\Data\product_category_name_translation.csv'
+        FROM 'E:\debugger-workflow-backend\olist-ecommerce-data-warehouse\Data\product_category_name_translation.csv'
         WITH (
             FORMAT = 'CSV',
             FIELDQUOTE = '"',
@@ -156,7 +156,7 @@ BEGIN
         
         PRINT '>> Loading data to: bronze.order_reviews';
         BULK INSERT bronze.order_reviews
-        FROM 'C:\Users\Admin\Data_Warehouse_Project\Data\olist_order_reviews_dataset.csv'
+        FROM 'E:\debugger-workflow-backend\olist-ecommerce-data-warehouse\Data\olist_order_reviews_dataset.csv'
         WITH (
             FORMAT = 'CSV',
             FIELDQUOTE = '"',
