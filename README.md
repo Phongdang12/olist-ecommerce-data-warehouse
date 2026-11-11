@@ -204,3 +204,33 @@ ORDER BY doanh_thu DESC;
 4: if you can see the webpage in your browser, it is working. the first page has static dashboards which have information that is sensible to know immediately. the second page has an interactive olap tool
 the tool allows you to do complex olap operations: slice, dice, pivot, drilldown and rollup, onto the data warehouse.
 5: to stop the Uvicorn server, just end the process in the terminal.
+
+## DSS Dashboard (Streamlit)
+
+The Streamlit navigation includes a **DSS Dashboard** page that calls the
+separate FastAPI DSS backend. It provides overview metrics, analytics,
+What-if sensitivity analysis, RFM + K-Means segments, customer lookup,
+model retraining, and rule-based recommendations.
+
+Start the FastAPI backend first from `olist_dss_backend`:
+
+```powershell
+cd olist_dss_backend
+# Activate the backend virtual environment and install its requirements
+uvicorn app.main:app --reload
+```
+
+In another terminal, start Streamlit from the repository's `dashboards` folder:
+
+```powershell
+cd dashboards
+streamlit run app.py
+```
+
+The DSS page defaults to `http://127.0.0.1:8000`. Change the FastAPI Base URL
+in the page sidebar if the backend runs at another host or port. You can also
+set `DSS_API_URL` before starting Streamlit.
+
+The Streamlit app and FastAPI backend are separate processes. The backend
+must be running and connected to `OlistDW` for DSS data, What-if, segmentation,
+retraining, and recommendations to work.
