@@ -2,7 +2,7 @@ import streamlit as st
 import altair as alt
 
 from db import get_connection
-from olap import query
+from olap import query, pivot_data
 
 ##this page is for demonstrative dashboards that immediately answer some questions. no interactive OLAP here.
 
@@ -203,11 +203,11 @@ st.divider()
 
 st.subheader("Revenue by Year and Product Category")
 
-year_category = query(
+year_category = pivot_data(
     conn,
-    dimensions=["year", "category"],
-    measure="revenue",
-    order_by_measure=True
+    row_dimension="year",
+    column_dimension="category",
+    measure="revenue"
 )
 
 st.dataframe(
