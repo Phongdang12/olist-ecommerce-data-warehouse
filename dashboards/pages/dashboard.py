@@ -1,9 +1,10 @@
 import streamlit as st
+import altair as alt
 
 from db import get_connection
 from olap import query
 
-##this page is for demonstrative dashboards that immediately answer some questions. no interactive OLAP
+##this page is for demonstrative dashboards that immediately answer some questions. no interactive OLAP here.
 
 conn = get_connection()
 
@@ -109,12 +110,22 @@ with left:
     # Keep dashboard readable
     category_revenue = category_revenue.head(10)
 
-    st.bar_chart(
-        category_revenue,
-        x="category",
-        y="revenue",
-        horizontal=True
+    # st.bar_chart(
+    #     category_revenue,
+    #     x="category",
+    #     y="revenue",
+    # )
+
+    chart = (
+    alt.Chart(category_revenue)
+    .mark_bar()
+    .encode(
+        x=alt.X("category", sort=None),  # Keeps DataFrame row order
+        y=alt.Y("revenue"),
     )
+)
+
+    st.altair_chart(chart, use_container_width=True)
 
 ##customer geography
 
@@ -129,11 +140,22 @@ with right:
         order_by_measure=True
     )
 
-    st.bar_chart(
-        region_revenue,
-        x="customer_region",
-        y="revenue"
+    # st.bar_chart(
+    #     region_revenue,
+    #     x="customer_region",
+    #     y="revenue"
+    # )
+
+    chart = (
+    alt.Chart(region_revenue)
+    .mark_bar()
+    .encode(
+        x=alt.X("customer_region", sort=None),  # Keeps DataFrame row order
+        y=alt.Y("revenue"),
     )
+)
+
+    st.altair_chart(chart, use_container_width=True)
 
 st.divider()
 
